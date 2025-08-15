@@ -8,3 +8,4 @@ i have been made in ascii art section fast tarot reader
 
 just mention this repository
 enjoy content :)
+i will be working trough weeksday new content,,, new page design etc etc
