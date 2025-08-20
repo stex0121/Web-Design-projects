@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Movie Facts About Justice</title>
+  <style>
+    /* --- STILOVI --- */
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #000000;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    /* Banner */
+    .scrolling-banner {
+      background: #111;
+      color: #fff;
+      padding: 12px 0;
+      text-align: center;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .scrolling-banner p {
+      display: inline-block;
+      animation: scroll-left 12s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Page layout */
+    .page-layout {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 80px 20px;
+    }
+
+    .sidebar-gif {
+      width: 360px;
+      height: 446px;
+      background: #000000;
+      border: 0px solid #444;
+      border-radius: 8px;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .ascii-art {
+  display: flex;
+  justify-content: center;  /* horizontalno centriranje */
+  align-items: center;      /* vertikalno centriranje (ako treba) */
+  height: 100%;
+  width: 100%;
+}
+.ascii-art pre {
+  margin: 0 auto;
+  white-space: pre;   /* zadržava razmake */
+  font-family: monospace;
+  font-size: 6.25px;
+  line-height: 0.8;
+}
+
+    /* Boje za ASCII art */
+    .char-black {
+      color: rgb(15, 15, 15);
+    }
+
+    .char-gold {
+  color: rgb(207, 122, 10);
+  text-shadow: 
+    0 0 5px rgb(207, 122, 10),
+    0 0 10px rgb(207, 122, 10),
+    0 0 20px rgb(207, 122, 10);
+}
+
+    .char-darkgray {
+      color: rgb(92, 91, 91);
+    }
+
+    .pink {
+      color: rgb(255, 3, 3);
+    }
+
+    .grey {
+      color: rgb(51, 50, 50);
+    }
+
+    .steel {
+      color: rgb(245, 222, 179);
+    }
+
+    /* Slider box */
+    .slider-box {
+      max-width: 1080px;
+      margin: 40px auto 0;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 600px;
+      object-fit: cover;
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 100;
+      user-select: none;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* Main review + rating box */
+    .main-box {
+      flex: 1;
+      max-width: 1080px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .feature-details h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .feature-details p {
+      margin-bottom: 15px;
+      white-space: pre-line;
+    }
+
+    .rating {
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .rating h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar-gif {
+        display: none;
+      }
+      .page-layout {
+        padding: 20px;
+      }
+      .slide {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slide {
+        height: 220px;
+      }
+      .feature-details h1,
+      .rating h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-box">
+    <div class="slider">
+      <button class="prev" aria-label="Previous slide">&#10094;</button>
+      <button class="next" aria-label="Next slide">&#10095;</button>
+
+      <div class="slides">
+        <img src="majka tereza.JPG" alt="Slide 1" class="slide" />
+        <img src="justice2.jpg" alt="Slide 2" class="slide" />
+        <img src="justice3.jpg" alt="Slide 3" class="slide" />
+        <!-- Dodaj još slide-ova po potrebi -->
+      </div>
+    </div>
+  </div>
+
+  <div class="page-layout">
+
+    <!-- LEVI ASCII BANER -->
+    <div class="sidebar-gif">
+      <div class="ascii-art">
+        <pre id="ascii-art-left">
+!
+                                                                                          .@@-..-@@@^@@.                            
+                                                                                           @#.=.=@@@@@  @*          
+                                             @^^^^^@                                       @.....@       @
+                                           @^^^^^^^^^@                                      @-.@+.@@@     ^     
+                                        @@^^^^^^^^^#^@@@                                  @@. @.@@@      ^      
+                                      *@^*^^@@@@#**.^^#@%                        -+*=.  @@@. @.@@+       ^        
+                                     *@^^^@@= .-:-:...^@%                              @@@....@@     ..+ ^ +      
+                                     %@^^#...........+=^@@                            :@@.....@      #+..^..+                     
+                                    @^^: *%*+:=#%%**@.^@#                           @@@...::@        +...^...+               
+                                  :%^^^@@-.:-::...=+@^.@.                         @@@...:: @:       +%...^...+    
+                                  .@^^^^^:=-......-#@.@@                        :@@....:: @           +...^...+                
+                                  *@-^^%+. -....-@%.^@@                        @@@...: @ *            +..^..+                     
+                                   :@^:..*+ ::-: -@..@@@                     #@@...::+@ =.=:           +.^.+               
+                                    @@+..%#......:%^@@@-                    .@@...:::@:                *@++=:                   
+                                     %**:=:=.....-+.^@@                    +@@...::.@  -+#               -*-                    
+                                    .=#: -^...@@%^#@@   .             .*@@@*...::*+@=@-:*#              @@@:                 
+                                     .%= =*#-..^^@@@           @@@@@@@*: ^....::**@ --                  :@@.:                       
+                                      *=++-:=#@@@@           -+@@@@#-: ^....::^: @@@                   = ##.    :       
+                                                    ..:  : =     @@@@@@@%*=.    @-..                 =@@-  @ #*:
+                                 *..........=%@@@@@@@+:::^^^:==:......=#@@@%:  @#                     +:*:=+=+
+                               +%@@# . @@   @    :*.......^^...........=#@@@%=@.                      =@ +. ++%=
+                            .@  =@@@@@%*=:  - :- ...::..*^-..^...........-*%**#=.                     @+ #   .- #:
+                          .@ .:%@#  .-:     . :- .:.....^....=^... -#++**#*=:.      .                 .@ #:. .: -*:@
+                          @ :#*=  -*-  :--: :  .........:..=.^-..%@@*-++.         .               .@# *  -- %#:..... @  
+                         ::2 :*:..........-.-:  ......:=@*^% ^==%@+                              @% :- .# :+  ..-......@  
+                        @ =#..........=*@@#.....@@@@#.^...#*=+                                   @#. -. =* =+ -:--.....@ 
+                       @:+=.++:=%@@@@.^^^^-#@@@@+....^....@%*#.                                   @# .. :=: :+.... .  @. 
+                      @-=.++:-.@@@@+++=^^*^........=%^#*=@^@@%-                                      @#@@@@@@@@@@@@-@@  .
+                    @.@:.++:-  @=+: &..- ^^=##+=-......^@^@@:                                                   
+                 ..@:^@=.++:-  @#+@&&&.-=^.......^-=^...@^^@-^                                                      
+                . @..^@@#.++:-  @% @&.-^.^..- ^+===-+^..@^^@+                                                             
+                 @...^#+.....-. % .% #=.^...: ^....::^:.@^^@:  -:                                                                              
+                 @**^.---=% :@@ @^............^....*^...#^*@^^:                                           -                    
+                 %^*#- +.++:- @* @..@:....#@@*...:..^..-@^@^ -                                                                                     
+                 @-^+.++:- +.@@- %@ @@ :@*..#@+...-^  *#@^@^ -                                                  
+                 @-^+.++:- +*@:   @@^@  #:..:#@..^+- .%-^^@^ .                                                                  
+                 @-^^+.++::::-@    @@^@#.=.....%^......%#%^@^ .              
+                 @@@- +.++:-@- .   @^%@  +%@@@:+=......+@^@^ .             
+                 @@- +.++ :@=      @^*@....*#=##........@^@^ .                
+                @@- +.++:@+: -=.  @^@% .=:.............+@@^@@            
+               @=- +.++:@+.      @@^@.....:@@@@@@@@@@@...@^  .               
+               @*:+.++:.@=   .  @@^#@++++++++++++++++++%:^@^ -:-.              
+               @@ +.++:.@+   . .@^^@- :  =@# *@@  @@@* @*^@^  .-.              
+               @@+.++:. @+.:.  @@^@*:.-..   #@%@@@@@@@=-^^@^  .:.            
+               @*+.++:.+@=    @@^#@ --:.-*@@*.:..::::- @^^@^              
+               @+-==-.. @=   *@^^@=.:..::::-=*@@@@@@@@ +@^.^#   :         
+               @=......@ *-:  @@^@*.:..::::-:-+*#* .-+=. #@% @^ :            
+               @....: @*    @+ @..:..::::-:-+*#* .-+.::::@ @^ :: .            
+              -@= .... @+ : :@  @.:..::::-:-+*#* ..:::: = #@  : .            
+              =@+.:::. @+- . -@ **.:..::::-:-+*#* ..::::-:+^@^ ::-:           
+              @..... @ +. : +@ #.:..::::-:-+*#* .-+=.. ...@^@@ .=*          
+            @ @@@@ @@-  =    *@ @-.:..::::-:-+*#* .-+=.   @^@^           
+            @+..==-.@::-  : *@^@:.:..::::-:-+*#* .-+=.. .-@^+@:             
+            @@+@@@@. @=-  . %@^@:.-..:   :::-----:  ::-  :@^^@^  -           
+            @@@@@@@..-@:  . %@^%..-.::::--..^^^^.-:. =*+*%@^^@^           
+            @@@@@@@..@%     #@^@..:.:::+-..^*+-+^+-+:::++:*^^@^= :            
+           -@#@@@@@.+@:     @@^@...::::-..^%=.=--^   =@@  @^^^@^ .        
+           -@@@@@@@*        @@^@...::::..^   ^^ =+^@= :  @+..@^              
+            @@#@@@@*@#=--:- @@^@ ..::::.-@- .- *  =^  @# +@...@^   :.           
+        :@-@*@@@@@@@-@  ==+*@- @@^@:..-:=+#@*  ^  +=   ^@  -%*...@^  :           
+          @@@@@@@@@@        @^@ @.    =*=  ^* -.*= :* :  ++:^@^ ::          
+         @@@@@@@@@@@@#@@@@  @@^# +++%%+++.= ^- +%  * ==.==:...@^           
+          =@*#@@@@@%@=-    . @#^#++++#+++-: #@^^@% -....-+....@^ .#          
+               @()(()@   .     @* % +++   .= @^^.@ ::...-+...@^:             
+                @()()@      @-@..@#-. -=: -#    @= ++=.:=...@^   
+                 @()(@@      + %.....::. ==     +@..:-..-..@^  .            
+                 .@()(#@     @ .... .- +: #+     %..:---..:@^          
+                 -@#()=-     .%....:+*+ = -#     @ =:-..+++@@             
+                 .*@()(%     .@...++++++++ *+   =@=:-..++++@@           
+                  :+@()%      @...++++++++*.  =@=:-..+++++@@          
+                   =@()#     .* .++++++++#=  *@=:-..++++++@+            
+                   -@()=     .:#.++++++++#%  .@=:-..++++++@@.              
+                  -+@(:@.     %-.++++++++#  *@=:-..++++++@@            
+                  .%@(@@:      @.++++++++#+ .@==:-..++++=@.          
+                   %@()@.    . @ ++++++++%: *#=:-..++++=@+      
+                   @#()&@+     @ +++++++:%..*=:-..++++-%-          
+                   @=()&@=     *+++++++++:# :#*:-..+++.==           
+                   @.&&()@      +.++++++.% **:---=*.+*-.      
+                    @.&&()@     ++++++++++@ %::---=*.++       
+                    #@&&&&@     +-+++++++-@ :---=*.#-     
+                     @#&&&@     =#+++++++*: % =.. -@=    
+                     #@&&&@   . -#+++++++*=   ..: *+  
+                     #@&&@=              
+                    
+                
+    `
+        </pre>
+      </div>
+    </div>
+
+    <!-- GLAVNI SADRŽAJ -->
+    <div class="main-box">
+
+      <!-- RECENZIJA -->
+      <section class="feature-details">
+        <h1>🎬 Famous Movie Quotes About Justice – With Explanations</h1>
+        <p>"You're out of order! The whole trial is out of order!"
+          – …And Justice for All (1979)
+          A frustrated lawyer explodes in court, exposing the system’s corruption and lack of fairness.
+          <br><br>
+          "Justice is coming."
+          – Tombstone (1993)
+          A promise of retribution against criminals in a lawless town – justice served through action.
+          <br><br>
+          "A man who won't stand up for himself becomes nothing."
+          – The Power of One (1992)
+          Highlights the importance of fighting injustice, even when you’re alone.
+          <br><br>
+          "Injustice anywhere is a threat to justice everywhere."
+          – Selma (2014)
+          Martin Luther King Jr. reminds us that allowing injustice in one place endangers fairness for all.
+          <br><br>
+          "They may take our lives, but they'll never take our freedom!"
+          – Braveheart (1995)
+          A cry for justice through rebellion – freedom as a form of justice.
+          <br><br>
+          "When you have to shoot, shoot. Don't talk."
+          – The Good, the Bad and the Ugly (1966)
+          A cynical take: sometimes, swift action is more effective than seeking formal justice.
+          <br><br>
+          "I am the law!"
+          – Judge Dredd (1995)
+          A futuristic enforcer declares himself as both judge and executioner – justice with no trial.
+          <br><br>
+          "You can't handle the truth!"
+          – A Few Good Men (1992)
+          A courtroom drama where truth and justice clash with military secrets and loyalty.
+          <br><br>
+          "The arc of the moral universe is long, but it bends toward justice."
+          – The Butler (2013)
+          A hopeful message that even slow progress leads toward justice in the end.
+          <br><br>
+          "Justice doesn’t always wear a badge."
+          – The Equalizer (2014)
+          Suggests that sometimes justice comes from outside the system, not through the law.
+          <br><br>
+          "Sometimes the law is not enough."
+          – The Dark Knight (2008)
+          Batman reflects on how law and justice can be two different things.
+          <br><br>
+          "You either die a hero or live long enough to see yourself become the villain."
+          – The Dark Knight (2008)
+          A warning that in the fight for justice, one can lose their moral compass.
+          <br><br>
+          "Is this justice? Or revenge?"
+          – The Punisher (2004)
+          A vigilante questions his own actions – justice and revenge are not the same.
+          <br><br>
+          "It’s not about what I want, it’s about what’s fair!"
+          – The Social Network (2010)
+          A young man argues over intellectual property – justice in business and recognition.
+          <br><br>
+          "Sometimes, justice is served in silence."
+          – Sicario (2015)
+          Shows that in dark, covert wars (like the drug war), justice isn't always public or clean.
+        </p>
+      </section>
+
+      <!-- OCENA -->
+      <section class="rating">
+        <h1>Overall Rating</h1>
+        <p>Justice-themed movies inspire us to think deeply about fairness, law, and morality. They remind us that justice is complex but essential.</p>
+      </section>
+
+    </div>
+
+    <!-- DESNI ASCII BANER -->
+    <div class="sidebar-gif">
+      <div class="ascii-art">
+        <pre id="ascii-art-right">
+!
+                                                                                          .@@-..-@@@^@@.                            
+                                                                                           @#.=.=@@@@@  @*          
+                                             @^^^^^@                                       @.....@       @
+                                           @^^^^^^^^^@                                      @-.@+.@@@     ^     
+                                        @@^^^^^^^^^#^@@@                                  @@. @.@@@      ^      
+                                      *@^*^^@@@@#**.^^#@%                        -+*=.  @@@. @.@@+       ^        
+                                     *@^^^@@= .-:-:...^@%                              @@@....@@     ..+ ^ +      
+                                     %@^^#...........+=^@@                            :@@.....@      #+..^..+                     
+                                    @^^: *%*+:=#%%**@.^@#                           @@@...::@        +...^...+               
+                                  :%^^^@@-.:-::...=+@^.@.                         @@@...:: @:       +%...^...+    
+                                  .@^^^^^:=-......-#@.@@                        :@@....:: @           +...^...+                
+                                  *@-^^%+. -....-@%.^@@                        @@@...: @ *            +..^..+                     
+                                   :@^:..*+ ::-: -@..@@@                     #@@...::+@ =.=:           +.^.+               
+                                    @@+..%#......:%^@@@-                    .@@...:::@:                *@++=:                   
+                                     %**:=:=.....-+.^@@                    +@@...::.@  -+#               -*-                    
+                                    .=#: -^...@@%^#@@   .             .*@@@*...::*+@=@-:*#              @@@:                 
+                                     .%= =*#-..^^@@@           @@@@@@@*: ^....::**@ --                  :@@.:                       
+                                      *=++-:=#@@@@           -+@@@@#-: ^....::^: @@@                   = ##.    :       
+                                                    ..:  : =     @@@@@@@%*=.    @-..                 =@@-  @ #*:
+                                 *..........=%@@@@@@@+:::^^^:==:......=#@@@%:  @#                     +:*:=+=+
+                               +%@@# . @@   @    :*.......^^...........=#@@@%=@.                      =@ +. ++%=
+                            .@  =@@@@@%*=:  - :- ...::..*^-..^...........-*%**#=.                     @+ #   .- #:
+                          .@ .:%@#  .-:     . :- .:.....^....=^... -#++**#*=:.      .                 .@ #:. .: -*:@
+                          @ :#*=  -*-  :--: :  .........:..=.^-..%@@*-++.         .               .@# *  -- %#:..... @  
+                         ::2 :*:..........-.-:  ......:=@*^% ^==%@+                              @% :- .# :+  ..-......@  
+                        @ =#..........=*@@#.....@@@@#.^...#*=+                                   @#. -. =* =+ -:--.....@ 
+                       @:+=.++:=%@@@@.^^^^-#@@@@+....^....@%*#.                                   @# .. :=: :+.... .  @. 
+                      @-=.++:-.@@@@+++=^^*^........=%^#*=@^@@%-                                      @#@@@@@@@@@@@@-@@  .
+                    @.@:.++:-  @=+: &..- ^^=##+=-......^@^@@:                                                   
+                 ..@:^@=.++:-  @#+@&&&.-=^.......^-=^...@^^@-^                                                      
+                . @..^@@#.++:-  @% @&.-^.^..- ^+===-+^..@^^@+                                                             
+                 @...^#+.....-. % .% #=.^...: ^....::^:.@^^@:  -:                                                                              
+                 @**^.---=% :@@ @^............^....*^...#^*@^^:                                           -                    
+                 %^*#- +.++:- @* @..@:....#@@*...:..^..-@^@^ -                                                                                     
+                 @-^+.++:- +.@@- %@ @@ :@*..#@+...-^  *#@^@^ -                                                  
+                 @-^+.++:- +*@:   @@^@  #:..:#@..^+- .%-^^@^ .                                                                  
+                 @-^^+.++::::-@    @@^@#.=.....%^......%#%^@^ .              
+                 @@@- +.++:-@- .   @^%@  +%@@@:+=......+@^@^ .             
+                 @@- +.++ :@=      @^*@....*#=##........@^@^ .                
+                @@- +.++:@+: -=.  @^@% .=:.............+@@^@@            
+               @=- +.++:@+.      @@^@.....:@@@@@@@@@@@...@^  .               
+               @*:+.++:.@=   .  @@^#@++++++++++++++++++%:^@^ -:-.              
+               @@ +.++:.@+   . .@^^@- :  =@# *@@  @@@* @*^@^  .-.              
+               @@+.++:. @+.:.  @@^@*:.-..   #@%@@@@@@@=-^^@^  .:.            
+               @*+.++:.+@=    @@^#@ --:.-*@@*.:..::::- @^^@^              
+               @+-==-.. @=   *@^^@=.:..::::-=*@@@@@@@@ +@^.^#   :         
+               @=......@ *-:  @@^@*.:..::::-:-+*#* .-+=. #@% @^ :            
+               @....: @*    @+ @..:..::::-:-+*#* .-+.::::@ @^ :: .            
+              -@= .... @+ : :@  @.:..::::-:-+*#* ..:::: = #@  : .            
+              =@+.:::. @+- . -@ **.:..::::-:-+*#* ..::::-:+^@^ ::-:           
+              @..... @ +. : +@ #.:..::::-:-+*#* .-+=.. ...@^@@ .=*          
+            @ @@@@ @@-  =    *@ @-.:..::::-:-+*#* .-+=.   @^@^           
+            @+..==-.@::-  : *@^@:.:..::::-:-+*#* .-+=.. .-@^+@:             
+            @@+@@@@. @=-  . %@^@:.-..:   :::-----:  ::-  :@^^@^  -           
+            @@@@@@@..-@:  . %@^%..-.::::--..^^^^.-:. =*+*%@^^@^           
+            @@@@@@@..@%     #@^@..:.:::+-..^*+-+^+-+:::++:*^^@^= :            
+           -@#@@@@@.+@:     @@^@...::::-..^%=.=--^   =@@  @^^^@^ .        
+           -@@@@@@@*        @@^@...::::..^   ^^ =+^@= :  @+..@^              
+            @@#@@@@*@#=--:- @@^@ ..::::.-@- .- *  =^  @# +@...@^   :.           
+        :@-@*@@@@@@@-@  ==+*@- @@^@:..-:=+#@*  ^  +=   ^@  -%*...@^  :           
+          @@@@@@@@@@        @^@ @.    =*=  ^* -.*= :* :  ++:^@^ ::          
+         @@@@@@@@@@@@#@@@@  @@^# +++%%+++.= ^- +%  * ==.==:...@^           
+          =@*#@@@@@%@=-    . @#^#++++#+++-: #@^^@% -....-+....@^ .#          
+               @()(()@   .     @* % +++   .= @^^.@ ::...-+...@^:             
+                @()()@      @-@..@#-. -=: -#    @= ++=.:=...@^   
+                 @()(@@      + %.....::. ==     +@..:-..-..@^  .            
+                 .@()(#@     @ .... .- +: #+     %..:---..:@^          
+                 -@#()=-     .%....:+*+ = -#     @ =:-..+++@@             
+                 .*@()(%     .@...++++++++ *+   =@=:-..++++@@           
+                  :+@()%      @...++++++++*.  =@=:-..+++++@@          
+                   =@()#     .* .++++++++#=  *@=:-..++++++@+            
+                   -@()=     .:#.++++++++#%  .@=:-..++++++@@.              
+                  -+@(:@.     %-.++++++++#  *@=:-..++++++@@            
+                  .%@(@@:      @.++++++++#+ .@==:-..++++=@.          
+                   %@()@.    . @ ++++++++%: *#=:-..++++=@+      
+                   @#()&@+     @ +++++++:%..*=:-..++++-%-          
+                   @=()&@=     *+++++++++:# :#*:-..+++.==           
+                   @.&&()@      +.++++++.% **:---=*.+*-.      
+                    @.&&()@     ++++++++++@ %::---=*.++       
+                    #@&&&&@     +-+++++++-@ :---=*.#-     
+                     @#&&&@     =#+++++++*: % =.. -@=    
+                     #@&&&@   . -#+++++++*=   ..: *+  
+                     #@&&@=              
+                    
+                
+    `
+        </pre>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JS SKRIPTA -->
+  <script>
+    const colorMap = {
+      '@': 'char-black',
+      ':': 'char-gold',
+      '%': 'char-darkgray',
+      '#': 'char-black',
+      '*': 'char-gold',
+      '+': 'char-gold',
+      '-': 'char-gold',
+      '=': 'char-gold',
+      '.': 'char-gold',
+      '&': 'pink',
+      '^': 'char-darkgray',
+      '(': 'steel',
+      ')': 'steel'
+    };
+
+    function colorizeAsciiArt(preId) {
+      const pre = document.getElementById(preId);
+      if (!pre) return;
+
+      const text = pre.textContent;
+      let html = '';
+
+      for (const ch of text) {
+        if (ch === '\n') {
+          html += '\n';
+        } else if (colorMap[ch]) {
+          html += `<span class="${colorMap[ch]}">${ch}</span>`;
+        } else {
+          html += ch;
+        }
+      }
+
+      pre.innerHTML = html;
+    }
+
+    colorizeAsciiArt('ascii-art-left');
+    colorizeAsciiArt('ascii-art-right');
+
+    // Slider logika
+    const slides = document.querySelectorAll('.slide');
+    const next = document.querySelector('.next');
+    const prev = document.querySelector('.prev');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      if(slides[index]) slides[index].classList.add('active');
+    }
+
+    if(next) {
+      next.addEventListener('click', () => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      });
+    }
+
+    if(prev) {
+      prev.addEventListener('click', () => {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+      });
+    }
+
+    if(slides.length > 0) showSlide(current);
+  </script>
+
+</body>
+</html>
